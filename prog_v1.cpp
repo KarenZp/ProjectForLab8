@@ -62,7 +62,87 @@ int main()
 		cipherFile.seekg(ios::beg);
 		additional_string.clear();
 	}
-	cout<<"Сделать дешифровку(y/n)?\n";
+	
+	
+			cout <<endl<< "Length: "<<cipher_string2.length()<<endl;
+		int row, col, mas_col[100], mas_row[100], kol_col=0, kol_row=0;//caaaee no?ieee noieaou
+		char **mas_ciph;
+		string slovo1, slovo2;
+		
+		cin>>slovo1>>slovo2;//aaaee no?iee e noieaou
+		row=slovo2.size();
+		col=slovo1.size();
+		mas_ciph=new char*[row+1];//naaeaee aeiaieaneee iannea
+		for(int i=0;i<row+1;i++)
+			mas_ciph[i]=new char [col+1];
+		
+		for(int i=1;i<col+1;i++)
+			mas_ciph[0][i]=slovo1[i-1];
+			
+		for(int i=1;i<row+1;i++)
+			mas_ciph[i][0]=slovo2[i-1];
+		mas_ciph[0][0]=' ';
+		int add_c=0;	
+		for(int i=1;i<row+1;i++){
+			for(int j=1;j<col+1;j++){
+				mas_ciph[i][j]=cipher_string2[add_c];
+				add_c++;
+			}
+		}
+
+		for(int i=1;i<col;i++){
+			if(mas_ciph[0][i]>mas_ciph[0][i+1]){
+				for(int j=0;j<row+1;j++){
+					swap(mas_ciph[j][i],mas_ciph[j][i+1]);
+				}
+				mas_col[kol_col]=i;
+				kol_col++;
+				i=0;
+			}
+		}
+		for(int i=1;i<row;i++){
+			if(mas_ciph[i][0]>mas_ciph[i+1][0]){
+				for(int j=0;j<col+1;j++){
+					swap(mas_ciph[i][j],mas_ciph[i+1][j]);
+				}
+				mas_row[kol_row]=i;
+				kol_row++;
+				i=0;
+			}
+		}
+		for(int i=0;i<row+1;i++){
+			for(int j=0;j<col+1;j++){
+				cout<<mas_ciph[i][j];
+			}
+			cout<<endl;
+		}
+	cout<<endl;
+		for(int i=kol_col-1;i!=-1;i--){
+			for(int j=0;j<row+1;j++){
+				swap(mas_ciph[j][mas_col[i]],mas_ciph[j][mas_col[i]+1]);
+			}
+		}
+		for(int i=kol_row-1;i!=-1;i--){
+			for(int j=0;j<col+1;j++){
+				swap(mas_ciph[mas_row[i]][j],mas_ciph[mas_row[i]+1][j]);
+			}
+		}	
+		for(int i=0;i<row+1;i++){
+			for(int j=0;j<col+1;j++){
+				cout<<mas_ciph[i][j];
+			}
+			cout<<endl;
+		}
+		add_c=0;
+		for(int i=1;i<row+1;i++){
+			for(int j=1;j<col+1;j++){
+				cipher_string2[add_c]=mas_ciph[i][j];
+				add_c++;
+			}
+		}
+		cout<<cipher_string2;
+	
+	cout<<endl<<"Сделать дешифровку(y/n)?\n";
 	cin>>ansver;
 	if (ansver=='y' || ansver=='Y')
 	{	cout<<"Дешифровка: ";

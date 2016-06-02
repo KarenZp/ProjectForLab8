@@ -1,5 +1,4 @@
 #include<iostream>
-#include <conio.h>
 #include <fstream>
 #include <string.h>
 #include <stdlib.h>
@@ -82,7 +81,6 @@ int main()
 	
 	inputFile.close();
 	cipherFile.close();
-	
-	getch();
+
 	return 0;
 }
